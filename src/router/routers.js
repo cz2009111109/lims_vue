@@ -356,7 +356,7 @@ export default [
     name: 'experiment_page',
     component: Main,
     meta: {
-      icon: 'md-laptop',
+      icon: 'ios-flask',
       title: 'experiment_page'
     },
     children: [
@@ -375,6 +375,93 @@ export default [
         meta: {
           icon: 'ios-paper',
           title: 'experiment_details'
+        },
+        component: () => import('@/view/update/update-table.vue')
+      }
+    ]
+  },
+  {
+    path: 'product_page',
+    name: 'product_page',
+    component: Main,
+    meta: {
+      icon: 'md-laptop',
+      title: 'product_page'
+    },
+    children: [
+      {
+        path: 'product_list',
+        name: 'product_list',
+        meta: {
+          icon: 'ios-cube',
+          title: 'product_list'
+        },
+        component: () => import('@/view/update/update-table.vue')
+      },
+      {
+        path: 'product_details',
+        name: 'product_details',
+        meta: {
+          icon: 'ios-paper',
+          title: 'product_details'
+        },
+        component: () => import('@/view/update/update-table.vue')
+      }
+    ]
+  },
+  {
+    path: 'material_page',
+    name: 'material_page',
+    component: Main,
+    meta: {
+      icon: 'ios-cart-outline',
+      title: 'material_page'
+    },
+    children: [
+      {
+        path: 'material_list',
+        name: 'material_list',
+        meta: {
+          icon: 'ios-cube',
+          title: 'material_list'
+        },
+        component: () => import('@/view/update/update-table.vue')
+      },
+      {
+        path: 'material_details',
+        name: 'material_details',
+        meta: {
+          icon: 'ios-paper',
+          title: 'material_details'
+        },
+        component: () => import('@/view/update/update-table.vue')
+      }
+    ]
+  },
+  {
+    path: 'systemSet_page',
+    name: 'systemSet_page',
+    component: Main,
+    meta: {
+      icon: 'md-settings',
+      title: 'systemSet_page'
+    },
+    children: [
+      {
+        path: 'user_page',
+        name: 'user_page',
+        meta: {
+          icon: 'ios-people',
+          title: 'user_page'
+        },
+        component: () => import('@/view/update/update-table.vue')
+      },
+      {
+        path: 'location_Setting',
+        name: 'location_Setting',
+        meta: {
+          icon: 'ios-paper',
+          title: 'location_Setting'
         },
         component: () => import('@/view/update/update-table.vue')
       }
