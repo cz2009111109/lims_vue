@@ -207,7 +207,63 @@ export default [
     ]
   },
   {
-    path: 'project_page',
+    path: '/test',
+    name: '测试',
+    component: Main,
+    meta: {
+      icon: 'md-paper',
+      title: '测试'
+    },
+    children: [
+      {
+        path: 'table01',
+        name: '表格1',
+        meta: {
+          icon: 'ios-list-box',
+          title: 'table1'
+        },
+        component: () => import('@/view/table/table01.vue')
+      },
+      {
+        path: 'table02',
+        name: '表格2',
+        meta: {
+          icon: 'ios-list-box',
+          title: 'table2'
+        },
+        component: () => import('@/view/table/table02.vue')
+      },
+      {
+        path: 'table03',
+        name: '表格3',
+        meta: {
+          icon: 'ios-list-box',
+          title: 'table3'
+        },
+        component: () => import('@/view/table/table03.vue')
+      },
+      {
+        path: 'table04',
+        name: '表格4',
+        meta: {
+          icon: 'ios-list-box',
+          title: 'table4'
+        },
+        component: () => import('@/view/table/table04.vue')
+      },
+      {
+        path: 'table04',
+        name: '表格4',
+        meta: {
+          icon: 'ios-list-box',
+          title: 'table4'
+        },
+        component: () => import('@/view/table/table04.vue')
+      }
+    ]
+  },
+  {
+    path: '/project_page',
     name: 'project_page',
     component: Main,
     meta: {
@@ -222,7 +278,7 @@ export default [
           icon: 'ios-list-box',
           title: 'project_list'
         },
-        component: () => import('@/view/update/update-table.vue')
+        component: () => import('@/view/project/project.vue')
       },
       {
         path: 'project_details',
@@ -236,7 +292,7 @@ export default [
     ]
   },
   {
-    path: 'contract_page',
+    path: '/contract_page',
     name: 'contract_page',
     component: Main,
     meta: {
@@ -265,7 +321,7 @@ export default [
     ]
   },
   {
-    path: 'sampleRegiter_page',
+    path: '/sampleRegiter_page',
     name: 'sampleRegiter_page',
     component: Main,
     meta: {
@@ -294,7 +350,7 @@ export default [
     ]
   },
   {
-    path: 'sample_page',
+    path: '/sample_page',
     name: 'sample_page',
     component: Main,
     meta: {
@@ -323,7 +379,7 @@ export default [
     ]
   },
   {
-    path: 'analysis_page',
+    path: '/analysis_page',
     name: 'analysis_page',
     component: Main,
     meta: {
@@ -352,7 +408,7 @@ export default [
     ]
   },
   {
-    path: 'experiment_page',
+    path: '/experiment_page',
     name: 'experiment_page',
     component: Main,
     meta: {
@@ -381,7 +437,7 @@ export default [
     ]
   },
   {
-    path: 'product_page',
+    path: '/product_page',
     name: 'product_page',
     component: Main,
     meta: {
@@ -410,7 +466,7 @@ export default [
     ]
   },
   {
-    path: 'material_page',
+    path: '/material_page',
     name: 'material_page',
     component: Main,
     meta: {
@@ -439,7 +495,7 @@ export default [
     ]
   },
   {
-    path: 'systemSet_page',
+    path: '/systemSet_page',
     name: 'systemSet_page',
     component: Main,
     meta: {

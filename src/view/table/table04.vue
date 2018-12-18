@@ -1,25 +1,31 @@
 <template>
-    <Table border  stripe :columns='columns' :data="data"></Table>
+    <Table border :columns="columns5" :data="data5"></Table>
 </template>
 <script>
-export default {
-    data(){
-        return {
-                columns: [
+    export default {
+        data () {
+            return {
+                columns5: [
+                    {
+                        title: 'Date',
+                        key: 'date',
+                        sortable: true
+                    },
                     {
                         title: 'Name',
                         key: 'name'
                     },
                     {
                         title: 'Age',
-                        key: 'age'
+                        key: 'age',
+                        sortable: true
                     },
                     {
                         title: 'Address',
                         key: 'address'
                     }
                 ],
-                data: [
+                data5: [
                     {
                         name: 'John Brown',
                         age: 18,
@@ -46,6 +52,6 @@ export default {
                     }
                 ]
             }
+        }
     }
-}
 </script>

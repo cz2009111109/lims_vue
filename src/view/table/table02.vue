@@ -1,11 +1,19 @@
 <template>
-    <Table border  stripe :columns='columns' :data="data"></Table>
+    <div>
+        <Table highlight-row ref="currentRowTable" :columns="columns3" :data="data1"></Table>
+        <Button @click="handleClearCurrentRow">Clear</Button>
+    </div>
 </template>
 <script>
-export default {
-    data(){
-        return {
-                columns: [
+    export default {
+        data () {
+            return {
+                columns3: [
+                    {
+                        type: 'index',
+                        width: 60,
+                        align: 'center'
+                    },
                     {
                         title: 'Name',
                         key: 'name'
@@ -19,7 +27,7 @@ export default {
                         key: 'address'
                     }
                 ],
-                data: [
+                data1: [
                     {
                         name: 'John Brown',
                         age: 18,
@@ -46,6 +54,11 @@ export default {
                     }
                 ]
             }
+        },
+        methods: {
+            handleClearCurrentRow () {
+                this.$refs.currentRowTable.clearCurrentRow();
+            }
+        }
     }
-}
 </script>

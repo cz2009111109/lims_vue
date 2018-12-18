@@ -1,11 +1,20 @@
 <template>
-    <Table border  stripe :columns='columns' :data="data"></Table>
+    <div>
+        <Table border ref="selection" :columns="columns4" :data="data1"></Table>
+        <Button @click="handleSelectAll(true)">Set all selected</Button>
+        <Button @click="handleSelectAll(false)">Cancel all selected</Button>
+    </div>
 </template>
 <script>
-export default {
-    data(){
-        return {
-                columns: [
+    export default {
+        data () {
+            return {
+                columns4: [
+                    {
+                        type: 'selection',
+                        width: 60,
+                        align: 'center'
+                    },
                     {
                         title: 'Name',
                         key: 'name'
@@ -19,7 +28,7 @@ export default {
                         key: 'address'
                     }
                 ],
-                data: [
+                data1: [
                     {
                         name: 'John Brown',
                         age: 18,
@@ -46,6 +55,11 @@ export default {
                     }
                 ]
             }
+        },
+        methods: {
+            handleSelectAll (status) {
+                this.$refs.selection.selectAll(status);
+            }
+        }
     }
-}
 </script>
