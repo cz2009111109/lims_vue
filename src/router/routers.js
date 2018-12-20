@@ -70,8 +70,8 @@ export default [
     meta: {
       title: '文档',
       href: 'https://lison16.github.io/iview-admin-doc/#/',
-      icon: 'ios-book',
-      access: [ 'manage' , 'super_admin' ]
+      access: [ 'manage' , 'super_admin' ],
+      icon: 'ios-book'
     }
   },
   // {
@@ -252,13 +252,13 @@ export default [
         component: () => import('@/view/table/table04.vue')
       },
       {
-        path: 'table04',
-        name: '表格4',
+        path: 'table05',
+        name: '表格5',
         meta: {
           icon: 'ios-list-box',
-          title: 'table4'
+          title: 'table5'
         },
-        component: () => import('@/view/table/table04.vue')
+        component: () => import('@/view/table/table05.vue')
       }
     ]
   },

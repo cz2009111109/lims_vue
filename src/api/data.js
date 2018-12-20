@@ -35,3 +35,11 @@ export const uploadImg = formData => {
     data: formData
   })
 }
+
+export const projects = params => {
+  return axios.request({
+    url: 'get_project',
+    data: params,
+    method: 'post'
+  })
+}
