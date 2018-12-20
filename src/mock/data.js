@@ -1,5 +1,7 @@
 import Mock from 'mockjs'
-import { doCustomTimes } from '@/libs/util'
+import {
+  doCustomTimes
+} from '@/libs/util'
 const Random = Mock.Random
 
 export const getTableData = req => {
@@ -11,6 +13,18 @@ export const getTableData = req => {
       createTime: '@date'
     }))
   })
+  return tableData
+}
+
+export const getTableData1 = req => {
+  let tableData = []
+
+  tableData.push(Mock.mock({
+    name: Random.cname(),
+    email: Random.email(),
+    createTime: Random.date('yyyy-MM-dd')
+  }))
+
   return tableData
 }
 

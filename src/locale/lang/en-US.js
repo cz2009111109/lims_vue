@@ -66,4 +66,5 @@ export default {
   material_page: 'Material Mange',
   material_list: 'Material List',
   material_details: 'Material Details',
+  Name: 'name'
 }

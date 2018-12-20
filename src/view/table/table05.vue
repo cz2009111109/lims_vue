@@ -2,9 +2,12 @@
     <Table border :columns="columns7" :data="data6"></Table>
 </template>
 <script>
+import {getProjects,getTableData1} from '@/api/data'
+
     export default {
         data () {
             return {
+                
                 columns7: [
                     {
                         title: 'Name',
@@ -94,6 +97,14 @@
                     title: 'User Info',
                     content: `Name：${this.data6[index].name}<br>Age：${this.data6[index].age}<br>Address：${this.data6[index].address}`
                 })
+                console.log(index);
+                console.log(this);
+                console.log(getTableData1());
+                getProjects(index).then(res => {
+                    console.log(res);
+                    console.log(res.data);
+                })
+                
             },
             remove (index) {
                 this.data6.splice(index, 1);

@@ -259,6 +259,24 @@ export default [
           title: 'table5'
         },
         component: () => import('@/view/table/table05.vue')
+      },
+      {
+        path: 'table06',
+        name: '表格6',
+        meta: {
+          icon: 'ios-list-box',
+          title: 'table6'
+        },
+        component: () => import('@/view/table/table06.vue')
+      },
+      {
+        path: 'modal01',
+        name: '对话框01',
+        meta: {
+          icon: 'ios-list-box',
+          title: 'table6'
+        },
+        component: () => import('@/view/modal/modal01.vue')
       }
     ]
   },

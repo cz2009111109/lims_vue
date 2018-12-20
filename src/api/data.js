@@ -7,6 +7,13 @@ export const getTableData = () => {
   })
 }
 
+export const getTableData1 = () => {
+  return {
+    url: 'get_table_data1',
+    method: 'get'
+  }
+}
+
 export const getDragList = () => {
   return axios.request({
     url: 'get_drag_list',
@@ -36,10 +43,9 @@ export const uploadImg = formData => {
   })
 }
 
-export const projects = params => {
+export const getProjects = params => {
   return axios.request({
     url: 'get_project',
-    data: params,
-    method: 'post'
+    data: params
   })
 }
