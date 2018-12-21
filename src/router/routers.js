@@ -274,9 +274,27 @@ export default [
         name: '对话框01',
         meta: {
           icon: 'ios-list-box',
-          title: 'table6'
+          title: 'modal6'
         },
         component: () => import('@/view/modal/modal01.vue')
+      },
+      {
+        path: 'modal02',
+        name: '对话框02',
+        meta: {
+          icon: 'ios-list-box',
+          title: 'modal2'
+        },
+        component: () => import('@/view/modal/modal02.vue')
+      },
+      {
+        path: 'modal03',
+        name: '对话框03',
+        meta: {
+          icon: 'ios-list-box',
+          title: 'modal3'
+        },
+        component: () => import('@/view/modal/modal03.vue')
       }
     ]
   },
