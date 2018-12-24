@@ -295,6 +295,14 @@ export default [
           title: 'modal3'
         },
         component: () => import('@/view/modal/modal03.vue')
+      },{
+        path: 'computed',
+        name: 'computed01',
+        meta: {
+          icon: 'ios-list-box',
+          title: 'computed01'
+        },
+        component: () => import('@/view/modal/computed.vue')
       }
     ]
   },

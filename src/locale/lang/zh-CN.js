@@ -66,5 +66,7 @@ export default {
   material_page: '物资管理',
   material_list: '物资列表',
   material_details: '物资详情',
-  name: '名称'
+  project:{ 
+    name:'名称'
+  }
 }
