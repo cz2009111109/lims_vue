@@ -66,9 +66,12 @@ export default {
   material_page: '物资管理',
   material_list: '物资列表',
   material_details: '物资详情',
+  Action:'操作',
+  editPageTitle: '编辑界面',
   project:{ 
     num:'項目編號',
     name: '名稱',
+    nowstate:'项目状态',
     starttime:'開始時間',
     endtime:'結束時間'
   }

@@ -66,7 +66,13 @@ export default {
   material_page: 'Material Mange',
   material_list: 'Material List',
   material_details: 'Material Details',
+  Action:'Action',
+  editPageTitle: 'editPageTitle',
   project:{ 
-    name: 'name'
+    num:'Project Number',
+    name:'Name',
+    nowstate:'Now State',
+    starttime:'Start Time',
+    endtime:'End Time'
   }
 }

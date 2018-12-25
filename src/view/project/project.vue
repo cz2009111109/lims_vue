@@ -2,113 +2,106 @@
   <div>  
     {{ $t('project.name') }} <br/>
     <!-- 列表模块   -->
-      <Table border :loading="listLoading" :columns="ColData" :data="projects"></Table>
+      <Table border :loading="listLoading" :columns="ColData" :data="items"></Table>
       <br/>
     
     
-    <template>
-    <Button type="primary" @click="modal1 = true">Display dialog box</Button>
     
     <!-- 编辑模块 -->
     <Modal
-        v-model="modal1"
-        title="Common Modal dialog box title"
+        v-model="editFormVisible"
+        :title="editPageTitle"
+        
         @on-ok="ok"
         @on-cancel="cancel">
-        <Form :model="formItem" :label-width="80">
-        <FormItem label="Input">
-            <Input v-model="formItem.input" placeholder="Enter something..."></Input>
+      <Form  :model="editForm" :label-width="90">
+        <FormItem v-for="(item,index) in editFormcols">
+          {{item}}{{index}}
         </FormItem>
-        <FormItem label="Select">
-            <Select v-model="formItem.select">
-                <Option value="beijing">New York</Option>
-                <Option value="shanghai">London</Option>
-                <Option value="shenzhen">Sydney</Option>
-            </Select>
-        </FormItem>
-        <FormItem label="DatePicker">
-            <Row>
-                <Col span="11">
-                    <DatePicker type="date" placeholder="Select date" v-model="formItem.date"></DatePicker>
-                </Col>
-                <Col span="2" style="text-align: center">-</Col>
-                <Col span="11">
-                    <TimePicker type="time" placeholder="Select time" v-model="formItem.time"></TimePicker>
-                </Col>
-            </Row>
-        </FormItem>
-        <FormItem label="Radio">
-            <RadioGroup v-model="formItem.radio">
-                <Radio label="male">Male</Radio>
-                <Radio label="female">Female</Radio>
-            </RadioGroup>
-        </FormItem>
-        <FormItem label="Checkbox">
-            <CheckboxGroup v-model="formItem.checkbox">
-                <Checkbox label="Eat"></Checkbox>
-                <Checkbox label="Sleep"></Checkbox>
-                <Checkbox label="Run"></Checkbox>
-                <Checkbox label="Movie"></Checkbox>
-            </CheckboxGroup>
-        </FormItem>
-        <FormItem label="Switch">
-            <i-switch v-model="formItem.switch" size="large">
-                <span slot="open">On</span>
-                <span slot="close">Off</span>
-            </i-switch>
-        </FormItem>
-        <FormItem label="Slider">
-            <Slider v-model="formItem.slider" range></Slider>
-        </FormItem>
-        <FormItem label="Text">
-            <Input v-model="formItem.textarea" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter something..."></Input>
-        </FormItem>
-    </Form>
+        <ul v-for="(item,index) in editForm">
+         <li> {{item}}{{index}}</li>
+        </ul>
+         <ul v-for="ele in editForm">
+         <li v-for="(item,index) in ele"> {{item}}:{{index}}</li>
+        </ul>
+     </Form>
     </Modal>
-</template>
       <!-- 分页模块 -->
-      <Page :total="total" :page-size="showTotal" :current='page' :page-size-opts='pageSizeOpt' @on-page-size-change="changePageSize" @on-change="changePage"  show-elevator show-sizer />
-
+      <Page 
+        :total="total" 
+        :page-size="showTotal" 
+        :current='page' 
+        :page-size-opts='pageSizeOpt' 
+        @on-page-size-change="changePageSize" 
+        @on-change="changePage"  
+        show-elevator 
+        show-sizer />
   </div>
 </template>
 <script>
   import {
     getProjects
   } from "@/api/limsData";
-  //import i18n from '@/locale';
 
   export default {
     data() {
       return {
-        formItem: {
-                    input: '',
-                    select: '',
-                    radio: 'male',
-                    checkbox: [],
-                    switch: true,
-                    date: '',
-                    time: '',
-                    slider: [20, 50],
-                    textarea: ''
-                },
-        modal1: false,
+        editFormVisible: false,
         listLoading: true,
         loading: false,
-        projects: [],
+        items: [],
         total: 0,
         page: 1,
         showTotal:10,
-        pageSizeOpt:[10,20,30,50,100],
-        columns7: [{
-            title: "项目编号",
+        pageSizeOpt:[10,20,30,50,100]
+      };
+    },
+    computed:{
+      editFormcols:function(){
+        return 
+          [
+            {
+              pro:'id',
+              label:this.$t('project.num'),
+              placeholder:''
+            },{
+              pro:'name',
+              label:this.$t('project.name'),
+              placeholder:''
+            },{
+              pro:'nowstate',
+              label:this.$t('project.nowstate'),
+              placeholder:''
+            }
+          ]
+        
+      },
+      editForm: function(){
+        return {
+          obj:{
+            id: '',
+            name: '',
+            starttime: '',
+            endtime: '',
+            nowstate: '',
+            date: ''
+            }
+          }
+        },
+      editPageTitle:function(){
+        return this.$t('editPageTitle')
+      },
+      ColData:function(){
+        return [{
+            title: this.$t('project.num'),
             key: "id",
             fixed: "left",
-            width: 150,
+            width: 130,
             render: (h, params) => {
               return h("div", [
                 h("Icon", {
                   props: {
-                    type: "项目编号"
+                    type: this.$t('project.num'),
                   }
                 }),
                 h("strong", params.row.id)
@@ -117,25 +110,33 @@
           },
           {
             title: this.$t('project.name'),
+            minWidth: 250,
             key: 'name'
           },
           {
-            title: "开始时间",
+            title: this.$t('project.nowstate'),
+            width: 100,
+            key: "nowstate"
+          },
+          {
+            title: this.$t('project.starttime'),
+            width: 130,
             key: "starttime"
           },
           {
-            title: "结束时间",
+            title:this.$t('project.endtime'),
+            width: 130,
             key: "endtime"
           },
           {
-            title: "操作",
+            title: this.$t('Action'),
             key: "action",
             fixed: "right",
-            width: 150,
+            width: 200,
             align: "center",
             render: (h, params) => {
               return h("div", [
-                h(
+                 h(
                   "Button", {
                     props: {
                       type: "primary",
@@ -146,91 +147,12 @@
                     },
                     on: {
                       click: () => {
-                        this.show(params.index);
+                        this.handleEdit(params.index,params.row);
                       }
                     }
                   },
-                  "View"
+                  "Edit"
                 ),
-                h(
-                  "Button", {
-                    props: {
-                      type: "error",
-                      size: "small"
-                    },
-                    on: {
-                      click: () => {
-                        this.remove(params.index);
-                      }
-                    }
-                  },
-                  "Delete"
-                )
-              ]);
-            }
-          }
-        ],
-        data6: [{
-            name: "John Brown",
-            age: 18,
-            address: "New York No. 1 Lake Park"
-          },
-          {
-            name: "Jim Green",
-            age: 24,
-            address: "London No. 1 Lake Park"
-          },
-          {
-            name: "Joe Black",
-            age: 30,
-            address: "Sydney No. 1 Lake Park"
-          },
-          {
-            name: "Jon Snow",
-            age: 26,
-            address: "Ottawa No. 2 Lake Park"
-          }
-        ]
-      };
-    },
-    computed:{
-      ColData:function(){
-        return [{
-            title: "项目编号",
-            key: "id",
-            fixed: "left",
-            width: 150,
-            render: (h, params) => {
-              return h("div", [
-                h("Icon", {
-                  props: {
-                    type: "项目编号"
-                  }
-                }),
-                h("strong", params.row.id)
-              ]);
-            }
-          },
-          {
-            title: this.$t('project.name'),
-            key: 'name'
-          },
-          {
-            title: "开始时间",
-            key: "starttime"
-          },
-          {
-            title: "结束时间",
-            key: "endtime"
-          },
-          {
-            title: "操作",
-            key: "action",
-            fixed: "right",
-            width: 150,
-            align: "center",
-            render: (h, params) => {
-              return h("div", [
                 h(
                   "Button", {
                     props: {
@@ -275,19 +197,24 @@
       cancel () {
           this.$Message.info('Clicked cancel');
       },
+      handleEdit(index,row){
+        this.editFormVisible = true;
+				console.log(row)
+				this.editForm.obj = Object.assign({}, row);
+      },
       show(index) {
         this.$Modal.info({
           title: "User Info",
-          content: `Name：${this.data6[index].name}<br>Age：${
-      this.data6[index].age
-      }<br>Address：${this.data6[index].address}`
+          content: `Name：${this.items[index].name}<br>num${
+      this.items[index].num
+      }<br>Starttime：${this.items[index].starttime}`
         });
         console.log(index);
         console.log(this);
 
       },
       remove(index) {
-        this.data6.splice(index, 1);
+        this.items.splice(index, 1);
       },
       getData() {
         this.listLoading = true;
@@ -298,7 +225,7 @@
         getProjects(para).then((res) => {
           console.log(res);
           console.log(res.data.total);
-          this.projects = res.data.projects;
+          this.items = res.data.projects;
           this.total=res.data.total;
           this.listLoading = false;
         });

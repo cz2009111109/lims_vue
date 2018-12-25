@@ -66,7 +66,13 @@ export default {
   material_page: '物资管理',
   material_list: '物资列表',
   material_details: '物资详情',
+  Action:'操作',
+  editPageTitle:'编辑界面',
   project:{ 
-    name:'名称'
+    num:'项目名称',
+    name:'名称',
+    nowstate:'项目阶段',
+    starttime:'开始时间',
+    endtime:'结束时间'
   }
 }

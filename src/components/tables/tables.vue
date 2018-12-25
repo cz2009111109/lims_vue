@@ -15,6 +15,8 @@
       :border="border"
       :show-header="showHeader"
       :width="width"
+      :minWidth="minWidth"
+      :maxWidth="maxWidth"
       :height="height"
       :loading="loading"
       :disabled-hover="disabledHover"
@@ -70,6 +72,12 @@ export default {
     },
     size: String,
     width: {
+      type: [Number, String]
+    },
+    minWidth: {
+      type: [Number, String]
+    },
+    maxWidth: {
       type: [Number, String]
     },
     height: {
