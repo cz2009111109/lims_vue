@@ -11,19 +11,25 @@
     <Modal
         v-model="editFormVisible"
         :title="editPageTitle"
-        
+        :model="editForm"
+        :ref='obj'
+        width="60%"
         @on-ok="ok"
         @on-cancel="cancel">
-      <Form  :model="editForm" :label-width="90">
-        <FormItem v-for="(item,index) in editFormcols">
-          {{item}}{{index}}
+      <Form  width="100%"  :label-width="90">
+        <!-- <ul>
+          <li v-for="(item,value) in editForm">{{item}}--{{value}}</li>
+        </ul> -->
+        <FormItem
+          v-for="(item,index) in editForm"
+          :label="item.label" >
+            <Input v-if="item.type=='text'" :type="item.type" v-model="obj[item.prop]"></Input>
+            <Select v-if="item.type=='select'">
+
+            </Select>
+            <DatePicker v-if="item.type=='date'" :type="item.type" v-model="obj[item.prop]" ></DatePicker>
         </FormItem>
-        <ul v-for="(item,index) in editForm">
-         <li> {{item}}{{index}}</li>
-        </ul>
-         <ul v-for="ele in editForm">
-         <li v-for="(item,index) in ele"> {{item}}:{{index}}</li>
-        </ul>
+        
      </Form>
     </Modal>
       <!-- 分页模块 -->
@@ -46,6 +52,14 @@
   export default {
     data() {
       return {
+        obj:{
+            id: '',
+            name: '',
+            starttime: '',
+            endtime: '',
+            nowstate: '',
+            date: ''
+            },
         editFormVisible: false,
         listLoading: true,
         loading: false,
@@ -57,36 +71,36 @@
       };
     },
     computed:{
-      editFormcols:function(){
-        return 
-          [
+      editForm: function(){
+        return [
             {
-              pro:'id',
+              type:'text',
+              prop:'id',
               label:this.$t('project.num'),
               placeholder:''
             },{
-              pro:'name',
+              type:'text',
+              prop:'name',
               label:this.$t('project.name'),
               placeholder:''
             },{
-              pro:'nowstate',
+              type:'select',
+              array:['','','','',''],
+              prop:'nowstate',
               label:this.$t('project.nowstate'),
+              placeholder:''
+            },{
+              type:'date',
+              prop:'starttime',
+              label:this.$t('project.starttime'),
+              placeholder:''
+            },{
+              type:'date',
+              prop:'endtime',
+              label:this.$t('project.endtime'),
               placeholder:''
             }
           ]
-        
-      },
-      editForm: function(){
-        return {
-          obj:{
-            id: '',
-            name: '',
-            starttime: '',
-            endtime: '',
-            nowstate: '',
-            date: ''
-            }
-          }
         },
       editPageTitle:function(){
         return this.$t('editPageTitle')
@@ -164,7 +178,7 @@
                     },
                     on: {
                       click: () => {
-                        this.show(params.index);
+                        this.show(params);
                       }
                     }
                   },
@@ -192,7 +206,7 @@
     },
     methods: {
       ok () {
-          this.$Message.info('Clicked ok');
+          console.log(this.obj);
       },
       cancel () {
           this.$Message.info('Clicked cancel');
@@ -200,7 +214,7 @@
       handleEdit(index,row){
         this.editFormVisible = true;
 				console.log(row)
-				this.editForm.obj = Object.assign({}, row);
+				this.obj = Object.assign({}, row);
       },
       show(index) {
         this.$Modal.info({

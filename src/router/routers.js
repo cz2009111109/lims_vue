@@ -303,6 +303,14 @@ export default [
           title: 'computed01'
         },
         component: () => import('@/view/modal/computed.vue')
+      },{
+        path: 'form01',
+        name: 'form01',
+        meta: {
+          icon: 'ios-list-box',
+          title: 'form01'
+        },
+        component: () => import('@/view/modal/form01.vue')
       }
     ]
   },
