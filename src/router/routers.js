@@ -270,6 +270,15 @@ export default [
         component: () => import('@/view/table/table06.vue')
       },
       {
+        path: 'table07',
+        name: '表格7',
+        meta: {
+          icon: 'ios-list-box',
+          title: 'table7'
+        },
+        component: () => import('@/view/table/table07.vue')
+      },
+      {
         path: 'modal01',
         name: '对话框01',
         meta: {

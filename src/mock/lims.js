@@ -10,11 +10,18 @@ const numToString = (param, num) => {
 
 }
 
+const SampleRegester=[]
+
+export const getSampleRegester= req => {
+  console.log(req);
+  
+}
 // eslint-disable-next-line padded-blocks
 for (let i = 1; i < 1001; i++) {
   let _starttime = Mock.Random.date('yyyy-MM-dd');
   let _endtime = Mock.Random.date('yyyy-MM-dd');
   let _nowstate=['未启动','检测','前期探索','实验中','建库测序','分析','结题','售后','已完成','作废','暂停'];
+  let _sampleRegester=SampleRegester;
   _projects.push(Mock.mock({
     id: 'whfs-xs-18' + numToString(4, i),
     date: Mock.Random.date('yyyy-MM-dd'),

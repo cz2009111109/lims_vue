@@ -67,10 +67,15 @@ export default {
   material_list: '物资列表',
   material_details: '物资详情',
   Action:'操作',
+  Edit:'编辑',
+  View:'查看',
+  Delete:'删除',
+  Add:'新增',
+  inquire:'查询',
   editPageTitle:'编辑界面',
   project:{ 
-    num:'项目名称',
-    name:'名称',
+    num:'项目编号',
+    name:'项目名称',
     nowstate:'项目阶段',
     starttime:'开始时间',
     endtime:'结束时间'

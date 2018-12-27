@@ -67,6 +67,11 @@ export default {
   material_list: 'Material List',
   material_details: 'Material Details',
   Action:'Action',
+  Edit:'Edit',
+  View:'View',
+  Delete:'Delete',
+  Add:'Add',
+  inquire:'inquire',
   editPageTitle: 'editPageTitle',
   project:{ 
     num:'Project Number',

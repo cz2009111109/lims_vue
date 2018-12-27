@@ -1,12 +1,25 @@
 <template>
   <div>  
-    {{ $t('project.name') }} <br/>
+    <!-- 工具条1   -->
+
+    <Form v-model="filter" inline>
+      <FormItem>
+        <Input v-model="filter.input" />
+      </FormItem>
+      <FormItem>
+        <Input v-model="filter.type" />
+      </FormItem>
+      <FormItem>
+          <Button type="primary" @click="handleFilter">{{this.$t('inquire')}}</Button>
+      </FormItem>
+      <FormItem>
+          <Button type="primary" @click="Add">{{this.$t('Add')}}</Button>
+      </FormItem>
+    </Form> 
+    
     <!-- 列表模块   -->
       <Table border :loading="listLoading" :columns="ColData" :data="items"></Table>
       <br/>
-    
-    
-    
     <!-- 编辑模块 -->
     <Modal
         v-model="editFormVisible"
@@ -21,11 +34,10 @@
           <li v-for="(item,value) in editForm">{{item}}--{{value}}</li>
         </ul> -->
         <FormItem
-          v-for="(item,index) in editForm"
-          :label="item.label" >
+          v-for="(item,index) in editForm" :label="item.label" >
             <Input v-if="item.type=='text'" :type="item.type" v-model="obj[item.prop]"></Input>
-            <Select v-if="item.type=='select'">
-
+            <Select v-if="item.type=='select'" v-model="obj.nowstate">
+              <Option v-for="ele in item.array"  :value="ele">{{ele}}</Option>
             </Select>
             <DatePicker v-if="item.type=='date'" :type="item.type" v-model="obj[item.prop]" ></DatePicker>
         </FormItem>
@@ -33,6 +45,7 @@
      </Form>
     </Modal>
       <!-- 分页模块 -->
+    <div style="float:right;">
       <Page 
         :total="total" 
         :page-size="showTotal" 
@@ -42,16 +55,21 @@
         @on-change="changePage"  
         show-elevator 
         show-sizer />
+      </div>
   </div>
 </template>
 <script>
   import {
     getProjects
   } from "@/api/limsData";
-
+  import expandRow from "./table-expand.vue"
   export default {
     data() {
       return {
+        filter:{
+          input:'',
+          type:''
+        },
         obj:{
             id: '',
             name: '',
@@ -66,8 +84,8 @@
         items: [],
         total: 0,
         page: 1,
-        showTotal:10,
-        pageSizeOpt:[10,20,30,50,100]
+        showTotal:12,
+        pageSizeOpt:[12,20,30,50,100]
       };
     },
     computed:{
@@ -85,7 +103,7 @@
               placeholder:''
             },{
               type:'select',
-              array:['','','','',''],
+              array:['未启动','检测','前期探索','实验中','建库测序','分析','结题','售后','已完成','作废','暂停'],
               prop:'nowstate',
               label:this.$t('project.nowstate'),
               placeholder:''
@@ -165,7 +183,7 @@
                       }
                     }
                   },
-                  "Edit"
+                  this.$t('Edit')
                 ),
                 h(
                   "Button", {
@@ -182,7 +200,7 @@
                       }
                     }
                   },
-                  "View"
+                  this.$t("View")
                 ),
                 h(
                   "Button", {
@@ -196,7 +214,7 @@
                       }
                     }
                   },
-                  "Delete"
+                  this.$t("Delete")
                 )
               ]);
             }
@@ -210,6 +228,12 @@
       },
       cancel () {
           this.$Message.info('Clicked cancel');
+      },
+      handleFilter(){
+
+      },
+      Add(){
+
       },
       handleEdit(index,row){
         this.editFormVisible = true;
