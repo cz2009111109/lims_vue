@@ -78,6 +78,7 @@ export default {
     name: '項目名稱',
     nowstate:'项目状态',
     starttime:'開始時間',
-    endtime:'結束時間'
+    endtime:'結束時間',
+    createtime:'createtime'
   }
 }

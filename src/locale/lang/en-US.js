@@ -72,12 +72,13 @@ export default {
   Delete:'Delete',
   Add:'Add',
   inquire:'inquire',
-  editPageTitle: 'editPageTitle',
+  editPageTitle: 'EditPage',
   project:{ 
     num:'Project Number',
     name:'Name',
     nowstate:'Now State',
     starttime:'Start Time',
-    endtime:'End Time'
+    endtime:'End Time',
+    createtime:'createtime'
   }
 }

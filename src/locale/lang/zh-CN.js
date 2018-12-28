@@ -78,6 +78,7 @@ export default {
     name:'项目名称',
     nowstate:'项目阶段',
     starttime:'开始时间',
-    endtime:'结束时间'
+    endtime:'结束时间',
+    createtime:'创建时间'
   }
 }

@@ -10,11 +10,38 @@ const numToString = (param, num) => {
 
 }
 
-const SampleRegester=[]
+const SampleRegester=[];
+const SampleRegesters=[];
+const Samples=[];
+
+for(let i = 0; i < 3; i++){
+  let Sample=[];
+  for(let j = 0; j < 10; j++) {
+    let _createtime = Mock.Random.date('yyyy-MM-dd');
+    let _sampletype=['组织','DNA','RNA'];
+    let _species=['动物','植物','细菌'];
+    Sample.push(Mock.mock({
+      id: i*3+j,
+      number:Mock.Random.float(0,100,2,2),
+      sampletype:_sampletype[Mock.Random.integer(0,2)],
+      species:_species[Mock.Random.integer(0,2)],
+      createtime:_createtime,
+      man:''
+    }));
+    Samples.concat(Sample);
+  }
+  SampleRegester.push(Mock.mock({
+      id:i,
+      name:'样本登记单'+i,
+      createtime:Mock.Random.date('yyyy-MM-dd'),
+      username:Mock.Random.cname(),
+      reviewname:Mock.Random.cname(),
+      samples:Sample
+  }));
+}
 
 export const getSampleRegester= req => {
-  console.log(req);
-  
+
 }
 // eslint-disable-next-line padded-blocks
 for (let i = 1; i < 1001; i++) {
@@ -28,6 +55,7 @@ for (let i = 1; i < 1001; i++) {
     name: 'xxxx大学或科研机构' + Mock.Random.cname() + '老师xxxx项目' + numToString(4, i),
     starttime: _starttime,
     endtime: _endtime,
+    sampleRegester:_sampleRegester,
     address: Mock.mock('@county(true)'),
     project: '项目名称' + 'whfs-xs-18' + Mock.Random.guid(),
     nowstate:_nowstate[Mock.Random.integer(0,10)]

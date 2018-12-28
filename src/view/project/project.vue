@@ -7,7 +7,11 @@
         <Input v-model="filter.input" />
       </FormItem>
       <FormItem>
-        <Input v-model="filter.type" />
+        <Select v-model="filter.type">
+          <Option 
+            v-for="(ele,index) in filter.array"
+            :value="ele.name">{{ele.label}}</Option>
+        </Select>
       </FormItem>
       <FormItem>
           <Button type="primary" @click="handleFilter">{{this.$t('inquire')}}</Button>
@@ -37,7 +41,7 @@
           v-for="(item,index) in editForm" :label="item.label" >
             <Input v-if="item.type=='text'" :type="item.type" v-model="obj[item.prop]"></Input>
             <Select v-if="item.type=='select'" v-model="obj.nowstate">
-              <Option v-for="ele in item.array"  :value="ele">{{ele}}</Option>
+              <Option v-for="ele in item.array"  :value="ele.value">{{ele.value}}</Option>
             </Select>
             <DatePicker v-if="item.type=='date'" :type="item.type" v-model="obj[item.prop]" ></DatePicker>
         </FormItem>
@@ -62,14 +66,10 @@
   import {
     getProjects
   } from "@/api/limsData";
-  import expandRow from "./table-expand.vue"
+  import SamRegtable from "./SamRegtable-expand.vue"
   export default {
     data() {
       return {
-        filter:{
-          input:'',
-          type:''
-        },
         obj:{
             id: '',
             name: '',
@@ -89,6 +89,26 @@
       };
     },
     computed:{
+      filter:function(){
+         return {
+          input:'',
+          type:'num',
+          array:[
+              {
+                name:'num',
+                label:this.$t('project.num')
+              },
+              {
+                name:'name',
+                label:this.$t('project.name')
+              },
+              {
+                name:'nowstate',
+                label:this.$t('project.nowstate')
+              }
+            ]
+          }
+        },
       editForm: function(){
         return [
             {
@@ -103,7 +123,41 @@
               placeholder:''
             },{
               type:'select',
-              array:['未启动','检测','前期探索','实验中','建库测序','分析','结题','售后','已完成','作废','暂停'],
+              array:[
+                  {
+                    name:'1',
+                    value:'未启动'},
+                  {
+                    name:'2',
+                    value:'检测'},
+                  {
+                    name:'3',
+                    value:'前期探索'},
+                  {
+                    name:'4',
+                    value:'实验中'},
+                  {
+                    name:'5',
+                    value:'建库测序'},
+                  {
+                    name:'6',
+                    value:'分析'},
+                  {
+                    name:'7',
+                    value:'结题'},
+                  {
+                    name:'8',
+                    value:'售后'},
+                  {
+                    name:'9',
+                    value:'已完成'},
+                  {
+                    name:'10',
+                    value:'作废'},
+                  {
+                    name:'11',
+                    value:'暂停'}
+                ],
               prop:'nowstate',
               label:this.$t('project.nowstate'),
               placeholder:''
@@ -124,10 +178,44 @@
         return this.$t('editPageTitle')
       },
       ColData:function(){
-        return [{
+        return [
+          {
+            type: 'expand',
+            width: 50,
+            render: (h, params) => {
+                return h(SamRegtable, {
+                    props: {
+                        row: params.row.sampleRegester,
+                        col:[
+                          {
+                            title: this.$t('project.name'),
+                            minWidth: 250,
+                            key: 'id'
+                          },
+                          {
+                            title: this.$t('project.name'),
+                            minWidth: 250,
+                            key: 'number'
+                          },
+                          {
+                            title: this.$t('project.name'),
+                            minWidth: 250,
+                            key: 'species'
+                          },
+                          {
+                            title: this.$t('project.createtime'),
+                            minWidth: 250,
+                            key: 'createtime'
+                          }
+                        ]
+
+                    }
+                })
+            }
+          },
+          {
             title: this.$t('project.num'),
             key: "id",
-            fixed: "left",
             width: 130,
             render: (h, params) => {
               return h("div", [
@@ -230,7 +318,7 @@
           this.$Message.info('Clicked cancel');
       },
       handleFilter(){
-
+          console.log(this.filter)
       },
       Add(){
 
