@@ -10,7 +10,7 @@
         <Select v-model="filter.type">
           <Option 
             v-for="(ele,index) in filter.array"
-            :value="ele.name">{{ele.label}}</Option>
+            value="ele.name">{{ele.label}}</Option>
         </Select>
       </FormItem>
       <FormItem>
@@ -66,7 +66,7 @@
   import {
     getProjects
   } from "@/api/limsData";
-  import SamRegtable from "./SamRegtable-expand.vue"
+  import SamRegtable from "../sampleReg/SamRegtable-expand"
   export default {
     data() {
       return {
@@ -188,22 +188,22 @@
                         row: params.row.sampleRegester,
                         col:[
                           {
-                            title: this.$t('project.name'),
+                            title: 'id',
                             minWidth: 250,
                             key: 'id'
                           },
                           {
-                            title: this.$t('project.name'),
+                            title: '登记单编号',
                             minWidth: 250,
-                            key: 'number'
+                            key: 'name'
                           },
                           {
-                            title: this.$t('project.name'),
+                            title: '物种',
                             minWidth: 250,
                             key: 'species'
                           },
                           {
-                            title: this.$t('project.createtime'),
+                            title: '创建时间',
                             minWidth: 250,
                             key: 'createtime'
                           }
@@ -251,7 +251,6 @@
           {
             title: this.$t('Action'),
             key: "action",
-            fixed: "right",
             width: 200,
             align: "center",
             render: (h, params) => {
