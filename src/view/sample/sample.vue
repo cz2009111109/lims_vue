@@ -95,7 +95,24 @@
                 }   
         },
         methods:{
-            
+             show(index) {
+                this.$Modal.info({
+                title: "User Info",
+                content: `Name：${this.items[index].name}<br>num${
+                this.items[index].num
+                }<br>Starttime：${this.items[index].starttime}`
+                    });
+                console.log(index);
+                console.log(this);
+            },
+            remove(index) {
+                this.items.splice(index, 1);
+            },
+            handleEdit(index,row){
+                this.editFormVisible = true;
+				console.log(row)
+				this.obj = Object.assign({}, row);
+            }
         }
     };
 </script>
