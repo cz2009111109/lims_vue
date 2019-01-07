@@ -4,13 +4,7 @@
     </div>
 </template>
 <script>
-import sample from "../sample/sampleTable-expand"
     export default {
-        data(){
-            return {
-                items:[]
-            }
-        },
         props: {
             col: Array,
             row: Array
@@ -18,48 +12,14 @@ import sample from "../sample/sampleTable-expand"
         computed:{
             coldata:function(){
                 return [{
-                    type: 'expand',
-                    width: 50,
-                    render: (h, params) => {
-                        return h(sample, {
-                            props: {
-                                row: params.row.samples,
-                                col:[
-                                {
-                                    title: 'id',
-                                    minWidth: 250,
-                                    key: 'id'
-                                },
-                                {
-                                    title: '登记单编号',
-                                    minWidth: 250,
-                                    key: 'name'
-                                },
-                                {
-                                    title: '物种',
-                                    minWidth: 250,
-                                    key: 'species'
-                                },
-                                {
-                                    title: '创建时间',
-                                    minWidth: 250,
-                                    key: 'createtime'
-                                }
-                                ]
-
-                            }
-                        })
-                    }
-                },
-                {
                     title: 'id',
                     minWidth: 250,
                     key: 'id'
                     },
                     {
-                        title: '登记单编号',
+                        title: '样本编号',
                         minWidth: 250,
-                        key: 'name'
+                        key: 'number'
                     },
                     {
                         title: '物种',
@@ -135,7 +95,7 @@ import sample from "../sample/sampleTable-expand"
                 }   
         },
         methods:{
-            show(index) {
+             show(index) {
                 this.$Modal.info({
                 title: "User Info",
                 content: `Name：${this.items[index].name}<br>num${
@@ -156,4 +116,3 @@ import sample from "../sample/sampleTable-expand"
         }
     };
 </script>
-

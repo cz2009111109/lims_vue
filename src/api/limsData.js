@@ -6,3 +6,17 @@ export const getProjects = params => {
       data: params
     })
   }
+
+export const getSamples = params => {
+  return axios.request({
+    url: 'get_samples',
+    data: params
+  })
+}
+
+export const getSampleRegs = params => {
+  return axios.request({
+    url: 'get_sampleRegs',
+    data: params
+  })
+}

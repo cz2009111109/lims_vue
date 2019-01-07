@@ -1,10 +1,27 @@
 <template>
     <div>
-        <Table border :columns="coldata" :data="row"></Table>
+        <Table border :loading="listLoading" :columns="ColData" :data="items"></Table>
     </div>
 </template>
 <script>
+  import {
+    getSamples
+  } from "@/api/limsData";
     export default {
+        data():{
+            return {
+                editFormVisible: false,
+                listLoading: true,
+                loading: false,
+                items:[],
+                total:0,
+                page:1,
+                showTotal:12,
+                pageSizeOpt:[12,20,30,50,100]
+
+
+            }
+        }
         props: {
             col: Array,
             row: Array

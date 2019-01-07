@@ -38,6 +38,7 @@ for(let i = 0; i < 3; i++){
       reviewname:Mock.Random.cname(),
       samples:Sample
   }));
+  SampleRegesters.concat(SampleRegester);
 }
 
 export const getSampleRegester= req => {
@@ -78,5 +79,13 @@ export const getProjectData = req => {
   };
 }
 export const getProjectCol = req => {
+  return ProjectCol
+}
+
+export const getSampleData = req => {
+  return ProjectCol
+}
+
+export const getSampleRegsData = req => {
   return ProjectCol
 }
