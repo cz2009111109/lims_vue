@@ -41,9 +41,7 @@ for(let i = 0; i < 3; i++){
   SampleRegesters.concat(SampleRegester);
 }
 
-export const getSampleRegester= req => {
 
-}
 // eslint-disable-next-line padded-blocks
 for (let i = 1; i < 1001; i++) {
   let _starttime = Mock.Random.date('yyyy-MM-dd');
@@ -82,10 +80,28 @@ export const getProjectCol = req => {
   return ProjectCol
 }
 
+const _SampleRegesters=SampleRegesters;
+const _Samples=Samples;
+
 export const getSampleData = req => {
-  return ProjectCol
+  let {page,showTotal}= JSON.parse(req.body);
+  console.log(page);
+  let total = _Samples.length;
+  let Samples = _Samples.filter( (p,index) => index < showTotal * page && index >= showTotal * (page - 1));
+  return {
+    'total': total,
+    'samples': Samples
+  };
 }
 
 export const getSampleRegsData = req => {
-  return ProjectCol
+  let {page,showTotal}= JSON.parse(req.body);
+  console.log(page);
+  let total = _SampleRegesters.length;
+  let SampleRegesters = _SampleRegesters.filter( (p,index) => index < showTotal * page && index >= showTotal * (page - 1));
+  return {
+    'total': total,
+    'sampleRegesters': SampleRegesters
+  };
 }
+

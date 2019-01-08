@@ -2,6 +2,8 @@
     <div>
         <Table border :loading="listLoading" :columns="ColData" :data="items"></Table>
     </div>
+
+    <>
 </template>
 <script>
   import {
@@ -10,6 +12,7 @@
     export default {
         data():{
             return {
+
                 editFormVisible: false,
                 listLoading: true,
                 loading: false,
@@ -18,8 +21,6 @@
                 page:1,
                 showTotal:12,
                 pageSizeOpt:[12,20,30,50,100]
-
-
             }
         }
         props: {
@@ -129,7 +130,24 @@
                 this.editFormVisible = true;
 				console.log(row)
 				this.obj = Object.assign({}, row);
+            },
+            getData(){
+                this.listLoading=true;
+                let para = {
+                    page: this.page,
+                    showTotal:this.showTotal
+                }
+                getSamples(para).then((res) => {
+                    console.log(res);
+                    console.log(res.data.total);
+                    this.items = res.data.projects;
+                    this.total=res.data.total;
+                    this.listLoading = false;
+                });
             }
+        },
+        mounted(){
+            this.getData();
         }
     };
 </script>
