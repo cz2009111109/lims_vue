@@ -25,7 +25,29 @@
       <Table border :loading="listLoading" :columns="ColData" :data="items"></Table>
       <br/>
     <!-- 编辑模块 -->
-      <ProjectEdit v-if="editFormVisible"  :ref='obj'  ></ProjectEdit>
+    <Modal
+        v-model="editFormVisible"
+        :title="editPageTitle"
+        :model="editForm"
+        :ref='obj'
+        width="60%"
+        @on-ok="ok"
+        @on-cancel="cancel">
+      <Form  width="100%"  :label-width="90">
+        <!-- <ul>
+          <li v-for="(item,value) in editForm">{{item}}--{{value}}</li>
+        </ul> -->
+        <FormItem
+          v-for="(item,index) in editForm" :label="item.label" >
+            <Input v-if="item.type=='text'" :type="item.type" v-model="obj[item.prop]"></Input>
+            <Select v-if="item.type=='select'" v-model="obj.nowstate">
+              <Option v-for="ele in item.array"  :value="ele.value">{{ele.value}}</Option>
+            </Select>
+            <DatePicker v-if="item.type=='date'" :type="item.type" v-model="obj[item.prop]" ></DatePicker>
+        </FormItem>
+        
+     </Form>
+    </Modal>
       <!-- 分页模块 -->
     <div style="float:right;">
       <Page 
@@ -49,9 +71,6 @@
   export default {
     data() {
       return {
-        components:{
-          ProjectEdit:projectEdit
-        },
         obj:{
             id: '',
             name: '',
@@ -318,11 +337,9 @@
 
       },
       handleEdit(index,row){
-        console.log(this.editFormVisible)
         this.editFormVisible = true;
 				console.log(row)
-        this.obj = Object.assign({}, row);
-        console.log(this.editFormVisible)
+				this.obj = Object.assign({}, row);
       },
       show(index) {
         console.log(index);

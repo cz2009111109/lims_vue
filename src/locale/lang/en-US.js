@@ -71,6 +71,10 @@ export default {
   View:'View',
   Delete:'Delete',
   Add:'Add',
+  BulkAdd:'BulkAdd',
+  BulkDelete:'BulkDelete',
+  CancelAllSelected:'CancelAllSelected',
+  SetAllSelected:'SetAllSelected',
   inquire:'inquire',
   editPageTitle: 'EditPage',
   project:{ 

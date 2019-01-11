@@ -3,14 +3,14 @@
         <Table border :loading="listLoading" :columns="ColData" :data="items"></Table>
     </div>
 
-    <>
+    
 </template>
 <script>
   import {
     getSamples
   } from "@/api/limsData";
     export default {
-        data():{
+        data(){
             return {
 
                 editFormVisible: false,
@@ -22,7 +22,7 @@
                 showTotal:12,
                 pageSizeOpt:[12,20,30,50,100]
             }
-        }
+        },
         props: {
             col: Array,
             row: Array
@@ -140,7 +140,7 @@
                 getSamples(para).then((res) => {
                     console.log(res);
                     console.log(res.data.total);
-                    this.items = res.data.projects;
+                    this.items = res.data.samples;
                     this.total=res.data.total;
                     this.listLoading = false;
                 });

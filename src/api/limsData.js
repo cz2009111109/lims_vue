@@ -1,11 +1,11 @@
 import axios from '@/libs/api.request'
 
 export const getProjects = params => {
-    return axios.request({
-      url: 'get_project',
-      data: params
-    })
-  }
+  return axios.request({
+    url: 'get_projects',
+    data: params
+  })
+}
 
 export const getSamples = params => {
   return axios.request({

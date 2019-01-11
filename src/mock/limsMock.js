@@ -2,21 +2,20 @@ import Mock from 'mockjs'
 
 const _projects = []
 const numToString = (param, num) => {
-  let str = '';
+  let str = ''
   for (let i = 0; i < param - num.toString().length; i++) {
-    str += '0';
+    str += '0'
   }
-  return str + num.toString();
+  return str + num.toString()
 
 }
 
-const SampleRegester=[];
-const SampleRegesters=[];
-const Samples=[];
-
-for(let i = 0; i < 3; i++){
-  let Sample=[];
-  for(let j = 0; j < 10; j++) {
+const _SampleRegesters=[]
+const _Samples=[]
+const SampleRegester=[]
+for(let i = 0; i < 5; i++){
+  let Sample=[]
+  for(let j = 0; j < 6; j++) {
     let _createtime = Mock.Random.date('yyyy-MM-dd');
     let _sampletype=['组织','DNA','RNA'];
     let _species=['动物','植物','细菌'];
@@ -28,7 +27,7 @@ for(let i = 0; i < 3; i++){
       createtime:_createtime,
       man:''
     }));
-    Samples.concat(Sample);
+    _Samples.push(Sample);
   }
   SampleRegester.push(Mock.mock({
       id:i,
@@ -38,23 +37,21 @@ for(let i = 0; i < 3; i++){
       reviewname:Mock.Random.cname(),
       samples:Sample
   }));
-  SampleRegesters.concat(SampleRegester);
+  _SampleRegesters.concat(SampleRegester);
 }
-
 
 // eslint-disable-next-line padded-blocks
 for (let i = 1; i < 1001; i++) {
   let _starttime = Mock.Random.date('yyyy-MM-dd');
   let _endtime = Mock.Random.date('yyyy-MM-dd');
   let _nowstate=['未启动','检测','前期探索','实验中','建库测序','分析','结题','售后','已完成','作废','暂停'];
-  let _sampleRegester=SampleRegester;
   _projects.push(Mock.mock({
     id: 'whfs-xs-18' + numToString(4, i),
     date: Mock.Random.date('yyyy-MM-dd'),
     name: 'xxxx大学或科研机构' + Mock.Random.cname() + '老师xxxx项目' + numToString(4, i),
     starttime: _starttime,
     endtime: _endtime,
-    sampleRegester:_sampleRegester,
+    sampleRegester:SampleRegester,
     address: Mock.mock('@county(true)'),
     project: '项目名称' + 'whfs-xs-18' + Mock.Random.guid(),
     nowstate:_nowstate[Mock.Random.integer(0,10)]
@@ -80,9 +77,6 @@ export const getProjectCol = req => {
   return ProjectCol
 }
 
-const _SampleRegesters=SampleRegesters;
-const _Samples=Samples;
-
 export const getSampleData = req => {
   let {page,showTotal}= JSON.parse(req.body);
   console.log(page);
@@ -95,6 +89,7 @@ export const getSampleData = req => {
 }
 
 export const getSampleRegsData = req => {
+
   let {page,showTotal}= JSON.parse(req.body);
   console.log(page);
   let total = _SampleRegesters.length;
@@ -102,6 +97,5 @@ export const getSampleRegsData = req => {
   return {
     'total': total,
     'sampleRegesters': SampleRegesters
-  };
+  }
 }
-

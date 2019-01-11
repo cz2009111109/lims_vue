@@ -426,7 +426,7 @@ export default [
           icon: 'ios-list-box',
           title: 'sample_list'
         },
-        component: () => import('@/view/update/update-table.vue')
+        component: () => import('@/view/sample/sample.vue')
       },
       {
         path: 'sample_details',

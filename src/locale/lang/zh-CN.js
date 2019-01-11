@@ -71,6 +71,10 @@ export default {
   View:'查看',
   Delete:'删除',
   Add:'新增',
+  BulkAdd:'批量添加',
+  BulkDelete:'批量删除',
+  CancelAllSelected:'取消全选',
+  SetAllSelected:'全选',
   inquire:'查询',
   editPageTitle:'编辑界面',
   project:{ 

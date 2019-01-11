@@ -1,6 +1,10 @@
 <template>
     <div>
-        <Table border :columns="coldata" :data="row"></Table>
+        <Button @click="SampleSelectAll(true)">Set all selected</Button>
+        <Button @click="SampleSelectAll(false)">Cancel all selected</Button>
+        <Button type="primary" @click="BulkAdd">{{this.$t('BulkAdd')}}</Button>
+        <Button type="primary" @click="BulkDelete">{{this.$t('BulkDelete')}}</Button>
+        <Table ref="Sampleselection"  border :columns="coldata" :data="row"></Table>
     </div>
 </template>
 <script>
@@ -11,10 +15,15 @@
         },
         computed:{
             coldata:function(){
-                return [{
-                    title: 'id',
-                    minWidth: 250,
-                    key: 'id'
+                return [
+                    {
+                        type: 'selection',
+                        minWidth: 50,
+                        align: 'center'
+                    },{
+                        title: 'id',
+                        minWidth: 250,
+                        key: 'id'
                     },
                     {
                         title: '样本编号',
@@ -95,7 +104,7 @@
                 }   
         },
         methods:{
-             show(index) {
+            show(index) {
                 this.$Modal.info({
                 title: "User Info",
                 content: `Name：${this.items[index].name}<br>num${
@@ -106,12 +115,21 @@
                 console.log(this);
             },
             remove(index) {
-                this.items.splice(index, 1);
+                this.row.splice(index, 1);
             },
             handleEdit(index,row){
                 this.editFormVisible = true;
 				console.log(row)
 				this.obj = Object.assign({}, row);
+            },
+            BulkAdd(){
+                
+            },
+            BulkDelete(){
+
+            },
+            SampleSelectAll (status) {
+                this.$refs.Sampleselection.selectAll(status);
             }
         }
     };
