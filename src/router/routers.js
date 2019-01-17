@@ -427,15 +427,6 @@ export default [
           title: 'sample_list'
         },
         component: () => import('@/view/sample/sample.vue')
-      },
-      {
-        path: 'sample_details',
-        name: 'sample_details',
-        meta: {
-          icon: 'ios-paper',
-          title: 'sample_details'
-        },
-        component: () => import('@/view/update/update-table.vue')
       }
     ]
   },

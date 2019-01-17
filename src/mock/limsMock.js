@@ -19,16 +19,21 @@ for(let i = 0; i < 5; i++){
     let _createtime = Mock.Random.date('yyyy-MM-dd');
     let _sampletype=['组织','DNA','RNA'];
     let _species=['动物','植物','细菌'];
+    let _type=['DNA','RNA','组织']
     Sample.push(Mock.mock({
       id: i*3+j,
-      number:Mock.Random.float(0,100,2,2),
+      number:"FSYB20190117"+numToString(4, j+i*j),
+      num1:Mock.Random.float(0,100,2,2),
       sampletype:_sampletype[Mock.Random.integer(0,2)],
       species:_species[Mock.Random.integer(0,2)],
       createtime:_createtime,
+      type:_type[Mock.Random.integer(0,2)],
+      desciption
       man:''
     }));
-    _Samples.push(Sample);
+    
   }
+  _Samples.push(...Sample);
   SampleRegester.push(Mock.mock({
       id:i,
       name:'样本登记单'+i,

@@ -5,7 +5,7 @@
         <Button  @click="handleSelectAll(false)">{{this.$t('CancelAllSelected')}}</Button>
         <Button type="primary" @click="BulkDelete">{{this.$t('BulkDelete')}}</Button>
     <!-- 列表-->
-        <Table ref="selection"  border :columns="coldata" :data='row'>
+        <Table ref="selection"  border :columns="coldata" :data='row.sampleRegester'>
             
         </Table>
         
@@ -16,18 +16,13 @@ import sample from "../sample/sampleTable-expand"
     export default {
         data(){
             return {
-                project:{},
-                items:[]
             }
         },
         watch:{
-            row:(newVal,oldNal) =>{
-                this.items=newVal
-            }
         },
         props: {
             col: Array,
-            row: Array.sampleRegester
+            row: Array
         },
         computed:{
             coldata:function(){
@@ -158,12 +153,7 @@ import sample from "../sample/sampleTable-expand"
                 console.log(this.row)
             },
             show(index) {
-                this.$Modal.info({
-                title: "User Info",
-                content: `Name：${this.items[index].name}<br>num${
-                this.items[index].num
-                }<br>Starttime：${this.items[index].starttime}`
-                    });
+                console.log('index');
                 console.log(index);
                 console.log(this);
             },
@@ -198,7 +188,6 @@ import sample from "../sample/sampleTable-expand"
             }
         },
         mounted(){
-            this.showProps();
         }
     };
 </script>
