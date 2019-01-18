@@ -28,7 +28,7 @@ for(let i = 0; i < 5; i++){
       species:_species[Mock.Random.integer(0,2)],
       createtime:_createtime,
       type:_type[Mock.Random.integer(0,2)],
-      desciption
+      desciption:'描述'+j+i*j,
       man:''
     }));
     
