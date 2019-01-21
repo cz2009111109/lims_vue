@@ -397,7 +397,7 @@ export default [
           icon: 'ios-list-box',
           title: 'sampleRegiter_list'
         },
-        component: () => import('@/view/update/update-table.vue')
+        component: () => import('@/view/sampleReg/SamReg.vue')
       },
       {
         path: 'sampleRegiter_details',

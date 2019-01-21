@@ -34,16 +34,30 @@ for(let i = 0; i < 5; i++){
     
   }
   _Samples.push(...Sample);
+  let _param1=[]
+  let _param2=[]
+  let _param3=[]
+  let _param4=[]
+  let _param5=[]
   SampleRegester.push(Mock.mock({
       id:i,
       name:'样本登记单'+i,
       createtime:Mock.Random.date('yyyy-MM-dd'),
+      man:Mock.Random.cname(),
+      phone:1+""+numToString(10,Mock.Random.integer(1000000000,9999999999)),
+      mail:Mock.Random.email(),
       username:Mock.Random.cname(),
       reviewname:Mock.Random.cname(),
+      param1:'',
+      param2:'',
+      param3:'',
+      param4:'',
+      param5:'',
       samples:Sample
   }));
-  _SampleRegesters.concat(SampleRegester);
 }
+
+_SampleRegesters.push(...SampleRegester)
 
 // eslint-disable-next-line padded-blocks
 for (let i = 1; i < 1001; i++) {
