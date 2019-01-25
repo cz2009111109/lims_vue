@@ -73,6 +73,7 @@ for (let i = 1; i < 1001; i++) {
     sampleRegester:SampleRegester,
     address: Mock.mock('@county(true)'),
     project: '项目名称' + 'whfs-xs-18' + Mock.Random.guid(),
+    products:'产品列表',
     nowstate:_nowstate[Mock.Random.integer(0,10)]
   }))
 }
