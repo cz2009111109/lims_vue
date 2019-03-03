@@ -54,7 +54,8 @@
                 total:0,
                 page:1,
                 showTotal:12,
-                pageSizeOpt:[12,20,30,50,100]
+                pageSizeOpt:[12,20,30,50,100],
+                
             };
         },
         computed:{
@@ -207,7 +208,13 @@
             remove(index) {
                 this.items.splice(index, 1);
             },
+            handleFilter(){
+
+            },
             handleEdit(index,row){
+
+            },
+            Add(){
 
             },
             getData(){

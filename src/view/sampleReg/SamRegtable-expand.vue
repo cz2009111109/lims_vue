@@ -1,8 +1,6 @@
 <template>
     <div>
         <!-- 工具条1   -->
-        <Button  @click="handleSelectAll(true)">{{this.$t('SetAllSelected')}}</Button>
-        <Button  @click="handleSelectAll(false)">{{this.$t('CancelAllSelected')}}</Button>
         <Button type="primary" @click="BulkDelete">{{this.$t('BulkDelete')}}</Button>
     <!-- 列表-->
         <Table ref="selection"  border :columns="coldata" :data='row.sampleRegester'>

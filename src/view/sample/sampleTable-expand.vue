@@ -1,7 +1,6 @@
 <template>
     <div>
-        <Button @click="SampleSelectAll(true)">Set all selected</Button>
-        <Button @click="SampleSelectAll(false)">Cancel all selected</Button>
+
         <Button type="primary" @click="BulkAdd">{{this.$t('BulkAdd')}}</Button>
         <Button type="primary" @click="BulkDelete">{{this.$t('BulkDelete')}}</Button>
         <Table ref="Sampleselection"  border :columns="coldata" :data="row"></Table>
@@ -126,7 +125,17 @@
                 
             },
             BulkDelete(){
-
+                console.log(this.$refs.Sampleselection.getSelection())
+                console.log(this.row)
+                let arr=this.$refs.Sampleselection.getSelection()
+                console.log(arr)
+                arr.forEach(
+                    (val,index,arr)=>{
+                        console.log(val)
+                        console.log(index)
+                        this.row.splice(this.row.findIndex(item => item.id=val.id), 1);
+                    }
+                )
             },
             SampleSelectAll (status) {
                 this.$refs.Sampleselection.selectAll(status);

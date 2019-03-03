@@ -13,18 +13,21 @@
                     value="ele.name">{{ele.label}}</Option>
                 </Select>
             </FormItem>
-            <FormItem>
+            <FormItem inline>
                 <Button type="primary" @click="handleFilter">{{this.$t('inquire')}}</Button>
             </FormItem>
-            <FormItem>
-                <Button type="primary" @click="Add">{{this.$t('Add')}}</Button>
-            </FormItem>
         </Form> 
+       
+        
     
     <!-- 列表模块   -->
-        <Table border :loading="listLoading" :columns="coldata" :data="items"></Table>
+        <Table border ref="selection" :loading="listLoading" :columns="coldata" :data="items"></Table>
         <!-- 分页模块 -->
         <br/>
+        <Button type="primary" @click="Add">{{this.$t('Add')}}</Button>&nbsp;
+        <Button type="primary" @click="BulkDelete">{{this.$t('BulkDelete')}}</Button>
+        <br/>
+        
         <div style="float:right;">
             <Page 
                 :total="total" 
@@ -77,9 +80,13 @@
                 }
                 },
             coldata:function(){
-                return [{
+                return [ {
+                        type: 'selection',
+                        width: 60,
+                        align: 'center'
+                    }, {
                     title: 'id',
-                    minWidth: 250,
+                    minWidth: 60,
                     key: 'id'
                     },
                     {
@@ -173,6 +180,24 @@
             },
             handleEdit(index,row){
 
+            },
+            BulkDelete(){
+                console.log(this)
+                console.log(this.$refs)
+                console.log(this.items)
+                console.log("selection")
+                console.log(this.$refs.selection)
+                console.log(this.$refs.selection.getSelection())
+                let arr=this.$refs.selection.getSelection()
+                console.log(arr)
+                arr.forEach(
+                    (val,index,arr)=>{
+                        console.log(val)
+                        console.log(index)
+                        this.items.splice(this.items.findIndex(item => item.id=val.id), 1);
+                    }
+                )
+                
             },
             getData(){
                 this.listLoading=true;
