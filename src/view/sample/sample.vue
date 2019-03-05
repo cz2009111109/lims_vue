@@ -13,8 +13,14 @@
                     value="ele.name">{{ele.label}}</Option>
                 </Select>
             </FormItem>
-            <FormItem inline>
+            <FormItem>
                 <Button type="primary" @click="handleFilter">{{this.$t('inquire')}}</Button>
+            </FormItem>
+            <FormItem>
+                <Button type="primary" @click="Add">{{this.$t('Add')}}</Button>&nbsp;
+            </FormItem>
+            <FormItem>
+                <Button type="primary" @click="BulkDelete">{{this.$t('BulkDelete')}}</Button>
             </FormItem>
         </Form> 
        
@@ -24,9 +30,7 @@
         <Table border ref="selection" :loading="listLoading" :columns="coldata" :data="items"></Table>
         <!-- 分页模块 -->
         <br/>
-        <Button type="primary" @click="Add">{{this.$t('Add')}}</Button>&nbsp;
-        <Button type="primary" @click="BulkDelete">{{this.$t('BulkDelete')}}</Button>
-        <br/>
+        
         
         <div style="float:right;">
             <Page 
@@ -179,6 +183,12 @@
                 this.items.splice(index, 1);
             },
             handleEdit(index,row){
+
+            },
+            handleFilter(){
+
+            },
+            Add(){
 
             },
             BulkDelete(){

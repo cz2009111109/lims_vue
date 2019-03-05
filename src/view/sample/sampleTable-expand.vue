@@ -141,5 +141,5 @@
                 this.$refs.Sampleselection.selectAll(status);
             }
         }
-    };
+    }
 </script>
